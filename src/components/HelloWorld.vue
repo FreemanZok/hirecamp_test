@@ -12,11 +12,11 @@
           solo
         >
         </v-select>
-        <div class="mb-4">
+        <!-- <div class="mb-4">
           <div>
             {{ chosen }}
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="levels-container">
         <div class="level">
@@ -26,10 +26,13 @@
             class="circle-wrapper"
           >
             <div
-              @click="join_it(index)"
-              class="circle"
+              @click="chosen.length ? join_it(index) : ''"
+              class="circle mb-3"
               :class="chosen.length > index ? 'active' : ''"
             ></div>
+            <div class="text-center">
+              {{ chosen[index] }}
+            </div>
           </div>
         </div>
       </div>
@@ -45,6 +48,15 @@ export default {
     myItems: [],
     chosen: [],
     e1: 1,
+    levels: [
+      "منتظر بررسی",
+      "کاندید مصاحبه تلفنی",
+      "کاندید مصاحبه حضوری",
+      "کاندید آزمون عملی",
+      "کاندید بررسی منابع انسانی",
+      "کاندید بررسی مدیر عامل",
+      "کاندید استخدام",
+    ],
   }),
   methods: {
     getData() {
@@ -56,9 +68,24 @@ export default {
     },
     join_it(index) {
       let counter = index + 1;
-      for (let x = this.chosen.length; x < counter; x++) {
-        
-        this.$set(this.chosen, index, "alizoka")
+      if (this.chosen.length >= counter) {
+        this.chosen = [];
+
+        for (let x = 0; x < index; x++) {
+          // switch (x) {
+          //   case 0:
+          //     break;
+          //   case y:
+          //     break;
+          //   default:
+          // }
+
+          this.$set(this.chosen, x, this.levels[x]);
+        }
+      } else {
+        for (let z = this.chosen.length; z < counter; z++) {
+          this.$set(this.chosen, z, this.levels[z]);
+        }
       }
     },
   },
@@ -79,8 +106,8 @@ export default {
 }
 .circle-wrapper {
   width: calc(100% / 7);
-  display: flex;
-  justify-content: flex-start;
+  // display: flex;
+  // justify-content: flex-start;
 
   .circle {
     border: solid 2px rgb(81, 176, 3);
