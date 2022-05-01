@@ -13,7 +13,6 @@
         >
         </v-select>
         <div class="mb-4">
-      
           <div>
             {{ chosen }}
           </div>
@@ -27,6 +26,7 @@
             class="circle-wrapper"
           >
             <div
+              @click="join_it(index)"
               class="circle"
               :class="chosen.length > index ? 'active' : ''"
             ></div>
@@ -53,6 +53,13 @@ export default {
         console.log(response.data);
         this.myItems = response.data;
       });
+    },
+    join_it(index) {
+      let counter = index + 1;
+      for (let x = this.chosen.length; x < counter; x++) {
+        
+        this.$set(this.chosen, index, "alizoka")
+      }
     },
   },
   created() {
