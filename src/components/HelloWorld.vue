@@ -12,6 +12,7 @@
           solo
         >
         </v-select>
+        {{chosen}}
         <!-- <div class="mb-4">
           <div>
             {{ chosen }}
@@ -46,8 +47,8 @@ export default {
 
   data: () => ({
     myItems: [],
-    chosen: [],
     e1: 1,
+    chosen: [],
     levels: [
       "منتظر بررسی",
       "کاندید مصاحبه تلفنی",
@@ -81,6 +82,10 @@ export default {
           // }
 
           this.$set(this.chosen, x, this.levels[x]);
+
+        }
+        for (let z = this.chosen.length; z < counter; z++) {
+          this.$set(this.chosen, z, this.levels[z]);
         }
       } else {
         for (let z = this.chosen.length; z < counter; z++) {
@@ -88,6 +93,11 @@ export default {
         }
       }
     },
+  },
+  watch:{
+    chosen(newVal){
+      alert(newVal)
+    }
   },
   created() {
     this.getData();
