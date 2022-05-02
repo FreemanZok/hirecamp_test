@@ -13,6 +13,7 @@
         >
         </v-select>
       </div>
+      {{choisen}}
       <div class="levels-container">
         <div class="level">
           <div
@@ -78,21 +79,11 @@ export default {
     join_it(index) {
       let counter = index + 1;
       if (this.chosen.length >= counter) {
-        this.chosen = [];
-
-        for (let x = 0; x < index; x++) {
-          // switch (x) {
-          //   case 0:
-          //     break;
-          //   case y:
-          //     break;
-          //   default:
-          // }
-
-          this.$set(this.chosen, x, this.levels[x]);
-        }
-        for (let z = this.chosen.length; z < counter; z++) {
-          this.$set(this.chosen, z, this.levels[z]);
+        // this.chosen = [];
+        let bab = this.chosen.length - counter;
+        alert(bab)
+        for (let x = 0; x < bab; x++) {
+          this.chosen.pop()
         }
       } else {
         for (let z = this.chosen.length; z < counter; z++) {
