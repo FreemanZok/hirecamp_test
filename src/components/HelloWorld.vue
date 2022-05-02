@@ -4,7 +4,7 @@
       <!-- <h2 class="mb-4 py-2">hello, this is a test...</h2> -->
       <div>
         <v-select
-          :items="myItems"
+          :items="myItems.length ? myItems : ''"
           v-model="chosen"
           item-text="title"
           item-value="stages"
@@ -81,7 +81,6 @@ export default {
       if (this.chosen.length >= counter) {
         // this.chosen = [];
         let bab = this.chosen.length - counter;
-        alert(bab)
         for (let x = 0; x < bab; x++) {
           this.chosen.pop()
         }
